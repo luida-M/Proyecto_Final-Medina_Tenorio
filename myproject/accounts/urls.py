@@ -1,12 +1,13 @@
-# accounts/urls.py
+#from accounts.urls.py
 from django.urls import path
 from . import views  # Si tienes vistas en accounts/views.py
 
 urlpatterns = [
-    path('clientes/', views.clientes, name='clientes'),
-    path('servicios/', views.servicios, name='servicios'),
-    path('vacantes/', views.vacantes, name='vacantes'),
-    path('nosotros/', views.nosotros, name='nosotros'),
-    path('contacto/', views.contacto, name='contacto'),
+    path('', views.base, name='base'),
+    path('team/', views.team, name='team'),
+    path('portfolio/', views.portfolio, name='portfolio'),
+    path('services/', views.services, name='services'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
 
 ]

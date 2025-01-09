@@ -1,20 +1,22 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.shortcuts import render
+
 def base(request):
-    return render(request, 'accounts/base.html')  # Vista para la base
+    return render(request, 'accounts/base.html')
 
-def servicios(request):
-    return render(request, 'accounts/servicios.html')  # Vista para 'servicios'
+def team(request):
+    return render(request, 'accounts/team.html')
 
-def vacantes(request):  # Corregido el nombre de 'porfolio_view' a 'portfolio_view'
-    return render(request, 'accounts/vacantes.html')  # Vista para 'vacantes'
+def portfolio(request): 
+    return render(request, 'accounts/portfolio.html')
 
-def nosotros(request):
-    return render(request, 'accounts/nosotros.html')  # Vista para 'nosotros'
+def services(request):
+    return render(request, 'accounts/services.html')  # Asegúrate de que el nombre y la ruta coincidan
 
-def clientes(request):
-    return render(request, 'accounts/clientes.html')  # Vista para 'clientes'
+def about(request):
+    return render(request, 'accounts/about.html')
 
-def contacto(request):
-    return render(request, 'accounts/contacto.html')  # Vista para 'contacto'
+def contact(request):
+    return render(request, 'accounts/contact.html')

@@ -1,0 +1,15 @@
+{% extends 'accounts/clientes.html' %} 
+
+{% load static %}
+{% block title %} Formulario con Api {% endblock %}
+
+{% block main %}
+
+    <form action="{% url 'accounts:form_con_api' %}" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ mi_formulario.as_table }}
+        </table>
+        <input type="submit" value="Enviar">   
+    </form>
+{% endblock main %}
