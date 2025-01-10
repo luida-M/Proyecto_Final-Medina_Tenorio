@@ -1,7 +1,7 @@
 from django.shortcuts import render
+from .models import Desarrollador
 
 # Create your views here.
-from django.shortcuts import render
 
 def base(request):
     return render(request, 'accounts/base.html')
@@ -20,3 +20,14 @@ def about(request):
 
 def contact(request):
     return render(request, 'accounts/contact.html')
+
+def desarrollador(request):
+    return render(request, 'accounts/desarrollador.html')
+
+
+def desarrollador(request):
+    if request.method == 'POST':
+        desarrollador = Desarrollador(name=request.POST['desarrollador'], rol=request.POST['rol'], email=request.POST['email'])
+        desarrollador.save()
+        return render(request, 'accounts/base.html')
+    return render(request, 'accounts/desarrollador.html')

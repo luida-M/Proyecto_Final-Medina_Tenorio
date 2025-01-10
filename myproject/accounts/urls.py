@@ -9,5 +9,11 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
+    path('desarrollador/', views.desarrollador, name='desarrollador'),
 
 ]
+
+form_html = [
+    path('desarrollador/', views.desarrollador, name='desarrollador'),
+]
+urlpatterns += form_html    
