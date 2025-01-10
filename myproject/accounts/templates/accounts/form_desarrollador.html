@@ -3,7 +3,7 @@
 {% block title %} Formulario para agregar desarrolladores {% endblock title %}
 {% block main %}
 
-<form action="/accounts/desarrollador/" method="post">
+<form action="{% url 'form_desarrollador'%}/" method="post">
     {% csrf_token %}
     <p>nombre: <input type="text" name="nombre"></p>
     <p>apellido: <input type="text" name="apellido"></p>

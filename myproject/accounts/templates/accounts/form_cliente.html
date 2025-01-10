@@ -2,13 +2,13 @@
 {% load static %}
 {% block title %}Formulario para Clientes {% endblock title %}
 {% block main %}
-   <form action ="/form-cliente/" method="POST">
+   <form action ="{% url 'form_cliente'%}" method="POST">
       {% csrf_token %}
-      <P>Nombre: <input type="text" name="cliente"></P>
+      <P>Nombre: <input type="text" name="name"></P>
       <P>Empresa: <input type="text" name="company"></P>
       <P>Email: <input type="text" name="email"></P>
       <P>Telefono: <input type="text" name="telefono"></P>
-      <P>Mensaje: <textarea name="mensaje"></P>
+      <P>Mensaje: <textarea name="mensaje"></textarea></P>
       <input type="submit"   value="Enviar">
    </form>
 {% endblock main %}

@@ -3,7 +3,7 @@ class Cliente(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     company = models.CharField(max_length=100)
-    telefono = models.CharField(max_length=15) 
+    telefono = models.CharField(max_length=20) 
     mensaje = models.TextField(default='') 
     def __str__(self):
         return self.name
