@@ -1,0 +1,14 @@
+{% extends "accounts/base.html" %} 
+{% load static %}
+{% block title %}Formulario para Clientes {% endblock title %}
+{% block main %}
+   <form action ="/form-cliente/" method="POST">
+      {% csrf_token %}
+      <P>Nombre: <input type="text" name="cliente"></P>
+      <P>Empresa: <input type="text" name="company"></P>
+      <P>Email: <input type="text" name="email"></P>
+      <P>Telefono: <input type="text" name="telefono"></P>
+      <P>Mensaje: <textarea name="mensaje"></P>
+      <input type="submit"   value="Enviar">
+   </form>
+{% endblock main %}
