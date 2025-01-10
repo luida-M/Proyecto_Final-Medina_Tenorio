@@ -1,0 +1,16 @@
+{% extends "accounts/base.html" %} 
+{% load static %}
+{% block title %} Formulario para agregar desarrolladores {% endblock title %}
+{% block main %}
+
+<form action="/accounts/desarrollador/" method="post">
+    {% csrf_token %}
+    <p>nombre: <input type="text" name="nombre"></p>
+    <p>apellido: <input type="text" name="apellido"></p>
+    <p>email: <input type="email" name="email"></p>
+    <p>rol: <input type="text" name="rol"></p>
+    <p>proyecto: <input type="text" name="proyecto"></p>
+
+    <input type="submit" name="Enviar">
+</form>
+{% endblock main %} 
