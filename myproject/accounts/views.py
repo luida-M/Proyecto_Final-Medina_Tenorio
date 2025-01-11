@@ -58,8 +58,8 @@ def buscar_form_con_api(request):
         mi_formulario = BuscaDesarrollador(request.POST)
         if mi_formulario.is_valid():
             informacion = mi_formulario.cleaned_data
-            desarrollador = Desarrollador.objects.filter(name_icontains=informacion['desarrollador'])
-            return render(request, 'accounts/resultados.html', {"desarrollador": desarrollador})
+            desarrolladores = Desarrollador.objects.filter(name__icontains=informacion['desarrollador'])
+            return render(request, 'accounts/resultados.html', {"desarrolladores": desarrolladores})
     else:
         mi_formulario = BuscaDesarrollador()
     return render(request, 'accounts/buscar_form_con_api.html', {"mi_formulario": mi_formulario})
