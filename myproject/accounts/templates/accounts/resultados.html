@@ -1,0 +1,10 @@
+{% extends 'accounts/base.html' %} 
+{% load static %}
+{% block title %} Buscar con Api {% endblock title%}
+{% block main %}
+
+{% for desarrollador in desarrolladores %}
+    <li>Desarrollador:{{ desarrollador.name }} | {{ desarrollador.rol }}</li>
+    {% endfor %}
+
+{% endblock main %}
