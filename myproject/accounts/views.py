@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from accounts.models import Desarrollador, Cliente
-
+from accounts.forms import InfDesarrollador  
+from accounts.forms import BuscaDesarrollador
 def base(request):
     return render(request, 'accounts/base.html')
 
@@ -37,3 +38,30 @@ def form_cliente(request):
         cliente.save()
         return  render(request, 'accounts/base.html', {"message": "Cliente registrado correctamente"})
     return render(request, 'accounts/form_cliente.html')
+
+def form_con_api (request):
+    if request.method == 'POST':
+        mi_formulario = InfDesarrollador(request.POST)
+        if mi_formulario.is_valid():
+            informacion = mi_formulario.cleaned_data
+            desarrollador = Desarrollador(name=informacion['desarrollador'], proyecto=informacion['proyecto'], email=informacion['email'])
+            desarrollador.save()
+            return  render(request, 'accounts/base.html')
+    else:   
+        mi_formulario = InfDesarrollador()
+        print (f"\n\n{mi_formulario}\n\n")
+
+    return render(request, 'accounts/form_con_api.html', {"mi_formulario": mi_formulario}) 
+
+def buscar_form_con_api(request):
+    if request.method == "POST":
+        mi_formulario = BuscaDesarrollador(request.POST)
+        if mi_formulario.is_valid():
+            informacion = mi_formulario.cleaned_data
+            desarrollador = Desarrollador.objects.filter(name_icontains=informacion['desarrollador'])
+            return render(request, 'accounts/resultados.html', {"desarrollador": desarrollador})
+    else:
+        mi_formulario = BuscaDesarrollador()
+    return render(request, 'accounts/buscar_form_con_api.html', {"mi_formulario": mi_formulario})
+
+ 

@@ -1,11 +1,9 @@
-{% extends 'accounts/clientes.html' %} 
-
+{% extends 'accounts/base.html' %} 
 {% load static %}
-{% block title %} Formulario con Api {% endblock %}
-
+{% block title %} Formulario con Api {% endblock title%}
 {% block main %}
 
-    <form action="{% url 'accounts:form_con_api' %}" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
         <table>
             {{ mi_formulario.as_table }}
