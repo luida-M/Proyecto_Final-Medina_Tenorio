@@ -62,6 +62,26 @@ def buscar_form_con_api(request):
             return render(request, 'accounts/resultados.html', {"desarrolladores": desarrolladores})
     else:
         mi_formulario = BuscaDesarrollador()
-    return render(request, 'accounts/buscar_form_con_api.html', {"mi_formulario": mi_formulario})
+    return render(request,'accounts/buscar_form_con_api.html', {"mi_formulario": mi_formulario})
 
- 
+ #@login_required
+ #def editar_perfil(request):
+  #  usuario = request.user
+   # if request.method=='POST':
+    #    miFormulario = userEditForm(request.POST, request.FILES, instance.usuario)
+     #   if miFormulario.is_valid():
+      #      if miFormulario.cleaned_data.get ('imagen')
+       #         if Imagen.objects.filter(user=usuario).exists():
+        #            usuario.imagen.imagen = miFormulario.cleaned_data.get('imagen')
+         #           usuario.imagen.save()
+          #          else:
+           #             avatar =Imagen(user=usuario, imagen=miFormulario.cleaned_data.get('imagen')
+            #            avatar.save()
+             #   miFormulario.save()
+              #  return render(request, "accounts/base.html")
+    #else:
+     #   miFormulario = UserEditForm(instance=usuario)
+    #return render(request, "users/editar_usuario.html", {"mi_form": miFormulario, "usuario": usuario})
+
+#class CambiarContrasena(loginRequiredMixin, PasswordChangeView):
+

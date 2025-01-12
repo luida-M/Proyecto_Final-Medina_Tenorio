@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),  # Ruta para el panel de administración
     path('accounts/', include('accounts.urls')),  # Incluye las rutas de 'accounts'
-    
+    path('users/', include ('users.urls')),
 ]
 
 # Agrega esta línea para asegurarte de que los archivos estáticos se sirvan correctamente
