@@ -1,0 +1,19 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Details desarrollador {% endblock title %}
+
+{% block main %}
+<u>
+    {% for proyecto in proyectos %}
+    <li> {{ proyecto.nombre}} | {{proyecto.empresa}}
+        <a href="{% url 'verdesarrollador' desarrollador.pk %}">ver</a>
+    </li>
+    {% endfor %}
+</ul>    
+NOMBRE: {{ desarrollador.nombre }}<br>
+<button type="button" class="btn btn-dark"><a href="{% url 'DesarrolladorList' %}">Regresar</a></button>
+
+
+{% endblock main %}

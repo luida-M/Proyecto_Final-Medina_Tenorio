@@ -24,6 +24,7 @@ class ProyectoAdmin(admin.ModelAdmin):
     list_filter = ('estado',)      
 
 #Ir a cada archivo admin.py de cada aplicación y agregamos cada modelo:
+# registra los modelos en el panel de administración, pero sin una configuración personalizada de ModelAdmin
 #admin.site.register(Desarrollador)
 #admin.site.register(Cliente)
 #admin.site.register(Proyecto)
