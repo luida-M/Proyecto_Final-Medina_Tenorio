@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Listar Desarrolladores {% endblock title %}
+
+{% block main %}
+
+
+<div class="row">
+    {% for desarrollador in object_list %}
+        <div class="card" style="width: 18rem;" >
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{ desarrollador.nombre }}</h5>
+            <p class="card-text">rol: {{ desarrollador.rol }}</p>
+            <a href="{% url 'DesarrolladorDetail' desarrollador.id %}" class="btn btn-primary">Ver</a>
+            <a href="{% url 'DesarrolladorUpdate' desarrollador.id %}" class="btn btn-primary">Editar</a>
+            <a href="{% url 'DesarrolladorDelete' desarrollador.id %}" class="btn btn-primary">Borrar</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'DesarrolladorCreate' %}">Agregar nuevo</a>
+
+{% endblock main %}

@@ -1,0 +1,18 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Create Proyecto {% endblock title %}
+
+{% block main %}
+  
+<form method="POST">
+    {% csrf_token %}
+    <div>{{ <form action="" class="proyecto"></form> }}</div>
+    <div>{{ form.company}}</div>
+    
+    <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock main %}

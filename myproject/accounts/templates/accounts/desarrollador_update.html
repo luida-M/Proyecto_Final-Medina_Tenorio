@@ -1,0 +1,17 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Update desarrollador {% endblock title %}
+
+{% block main %}
+    
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Actualizar">
+</form>
+
+
+{% endblock main %}

@@ -1,0 +1,16 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}Cerrar Sesión{% endblock title %}
+
+{% block main %}
+    <h2>Has cerrado sesión exitosamente</h2>
+    <a href="{% url 'Login' %}">Iniciar sesión nuevamente</a>
+
+    <!-- Formulario para cerrar sesión utilizando método POST -->
+    <form action="{% url 'Logout' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Cerrar Sesión</button>
+    </form>
+{% endblock main %}
+

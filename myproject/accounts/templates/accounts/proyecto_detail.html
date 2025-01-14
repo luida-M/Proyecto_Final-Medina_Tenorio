@@ -1,0 +1,13 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Details Proyecto {% endblock title %}
+
+{% block main %}
+    
+NOMBRE: {{ proyecto.nombre }}<br>
+<button type="button" class="btn btn-dark"><a href="{% url 'ProyectoList' %}">Regresar</a></button>
+
+
+{% endblock main %}

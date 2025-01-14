@@ -1,0 +1,13 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block main %}
+    <h2>Resultados de la búsqueda desarrollador</h2>
+    <ul>
+        {% for desarrollador in desarrolladores %}
+            <li>{{ desarrollador.nombre }} - {{ desarrollador.rol }}</li>
+        {% empty %}
+            <li>No se encontraron desarrolladores.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'buscar_desarrollador' %}">Nueva búsqueda</a>
+{% endblock main %}

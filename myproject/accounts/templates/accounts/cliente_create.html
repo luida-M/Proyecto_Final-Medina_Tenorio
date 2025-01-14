@@ -1,0 +1,18 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Create Cliente {% endblock title %}
+
+{% block main %}
+  
+<form method="POST">
+    {% csrf_token %}
+    <div>{{ form.empresa }}</div>
+    <div>{{ form.rol}}</div>
+    
+    <input type="submit" value="Enviar">
+
+</form>
+
+{% endblock main %}

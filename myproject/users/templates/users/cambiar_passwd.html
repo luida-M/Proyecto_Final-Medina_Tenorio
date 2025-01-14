@@ -1,0 +1,15 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Cambiar contraseña {% endblock title %}
+
+{% block main %}
+
+  <h2>Cambiar contraseña</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Cambiar contraseña</button>
+  </form>
+{% endblock main %}

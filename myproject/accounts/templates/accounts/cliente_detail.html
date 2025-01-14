@@ -1,0 +1,13 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Details cliente  {% endblock title %}
+
+{% block main %}
+    
+NOMBRE: {{ cliente.empresa }}<br>
+<button type="button" class="btn btn-dark"><a href="{% url 'ClienteList' %}">Regresar</a></button>
+
+
+{% endblock main %}

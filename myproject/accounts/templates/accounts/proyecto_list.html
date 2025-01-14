@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Listar Proyecto {% endblock title %}
+
+{% block main %}
+
+
+<div class="row">
+    {% for proyecto in object_list %}
+        <div class="card" style="width: 18rem;" >
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{ proyecto.nombre }}</h5>
+            <p class="card-text">rol: {{ proyecto.company }}</p>
+            <a href="{% url 'ProyectoDetail' proyecto.id %}" class="btn btn-primary">Ver</a>
+            <a href="{% url 'ProyectoUpdate' proyecto.id %}" class="btn btn-primary">Editar</a>
+            <a href="{% url 'ProyectoDelete' proyecto.id %}" class="btn btn-primary">Borrar</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'ProyectoCreate' %}">Agregar nuevo</a>
+
+{% endblock main %}

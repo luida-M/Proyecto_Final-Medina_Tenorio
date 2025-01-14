@@ -1,0 +1,13 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Details desarrollador {% endblock title %}
+
+{% block main %}
+    
+NOMBRE: {{ desarrollador.nombre }}<br>
+<button type="button" class="btn btn-dark"><a href="{% url 'DesarrolladorList' %}">Regresar</a></button>
+
+
+{% endblock main %}

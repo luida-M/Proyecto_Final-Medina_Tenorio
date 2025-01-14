@@ -1,0 +1,15 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Confirmar Cliente {% endblock title %}
+
+{% block main %}
+    
+<form method="POST">
+    {% csrf_token %}
+    Estas seguro/a {{ object }}
+    <input type="submit" value="Borrar">
+</form>
+
+{% endblock main %}
