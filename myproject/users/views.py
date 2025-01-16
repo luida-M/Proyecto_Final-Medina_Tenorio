@@ -19,7 +19,7 @@ def login_request(request):
             user = authenticate(username=usuario, password=contraseña )
             if user is not None:
                 login( request, user)
-                return render(request, "accounts/base.html")
+                return render(request, "accounts/home.html")
         msg_login = "Usuario o contraseña incorrecta"
     form = AuthenticationForm()
     return render(request, "users/login.html", {"form": form, "msg_login": msg_login})            
@@ -32,7 +32,7 @@ def register(request):
         if form.is_valid():
             form.save()
             msg_register = "Registro exitoso."
-            return render(request, "accounts/base.html", {"msg_register": msg_register})
+            return render(request, "accounts/register.html", {"msg_register": msg_register})
         #else:
         msg_register = "Error en los datos ingresados. Por favor, corrige los errores a continuación."
     #else:
@@ -79,7 +79,7 @@ def edit(request):
                     avatar.imagen = informacion["imagen"]
                     avatar.save()
 
-                return render(request, "accounts/index.html")
+                return render(request, "accounts/home.html")
 
     else:
         datos = {

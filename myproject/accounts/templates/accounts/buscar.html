@@ -1,8 +1,8 @@
-{% extends 'accounts/base.html' %} 
+{% extends 'accounts/home.html' %} 
 {% load static %}
 {% block title %} Buscar Desarrollador {% endblock title %}
 {% block main %}
-<form action="{% url 'buscar_desarrollador' %}" method="post">
+<form action="{% url 'buscar_desarrollador' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Buscar</button>

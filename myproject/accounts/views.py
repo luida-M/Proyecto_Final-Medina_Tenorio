@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render #get_object_or_404
 from accounts.forms import BuscaDesarrolladorForm, FormCliente
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
@@ -12,10 +12,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
 
-def index(request):
-    return render(request, 'index.html')
-
-def base(request):
+def home(request):
     imagen_query = Imagen.objects.filter(user=request.user.id)
     if imagen_query.exists() and len(imagen_query) > 1:
         imagen = imagen_query[1]
@@ -23,19 +20,22 @@ def base(request):
     # Manejar el caso en que no haya suficientes elementos
         imagen = None  # O algún valor por defecto
         print(imagen)
-    return render(request, 'accounts/base.html')
+    return render(request, 'accounts/home.html')
 
-#page = Proyecto.objects.filter(id=pageId).first()
+def index(request): 
+    return render(request, 'accounts/index.html')
 
-# vista basada en funciones que requiere login para mostrar el uso de @login_required
-class LoginPagina(LoginView):
-    template_name = 'base/index.html'
-    fields = '__all__'
-    redirect_autheticate_user = True
-    success_url = reverse_lazy('base')
+# vista basada en funciones que requiere login para mostrar el uso de @login_requiredo
 
-    def get_success_url(self):
-        return reverse_lazy('base')
+#class PortfolioView(ListView):
+#    model = Proyecto
+#    template_name = 'portfolio.html'
+#    context_object_name = 'proyectos'  # Este nombre se usará en la plantilla
+#    ordering = ['id']  # Ordenar por ID
+
+#def project_detail(request, proyecto_id):
+#    proyecto = get_object_or_404(Proyecto, id=proyecto_id)
+#    return render(request, 'project_detail.html', {'proyecto': proyecto})
 
 def login_request(request):
     msg_login=""
@@ -48,7 +48,7 @@ def login_request(request):
             user = authenticate(username=usuario, password=contraseña)
             if user is not None:
                 login(request, user)
-                return render(request, accounts/base.html)
+                return render(request, accounts/home.html)
         msg_login = "Usuario o contraseña incorrecto"            
     form = AuthenticationForm
     return render(request, "users/login.html", {"form": form, "msg_login": msg_login})
@@ -183,16 +183,16 @@ class ProyectoDeleteView(LoginRequiredMixin, DeleteView):
 def form_desarrollador(request):
     if request.method == 'POST':
         informacion = request.POST
-        desarrollador = Desarrollador( name=informacion['name'], rol=informacion['rol'], email=informacion['email'])
+        desarrollador = Desarrollador( name=informacion['nombre'], rol=informacion['rol'], email=informacion['email'])
         desarrollador.save()
-        return render(request, 'accounts/base.html')  #{'message': 'Desarrollador guardado exitosamente'})
+        return render(request, 'accounts/home.html')  #{'message': 'Desarrollador guardado exitosamente'})
     return render(request, 'accounts/form_desarrollador.html')
 
 def form_cliente(request):
     if request.method == 'POST':
-        cliente = Cliente(name=request.POST['name'], company=request.POST['company'], email=request.POST['email'], telefono=request.POST['telefono'])
+        cliente = Cliente(name=request.POST['nombre'], company=request.POST['company'], email=request.POST['email'], telefono=request.POST['telefono'])
         cliente.save()
-        return  render(request, 'accounts/base.html', {"message": "Cliente registrado correctamente"})
+        return  render(request, 'accounts/home.html', {"message": "Cliente registrado correctamente"})
     return render(request, 'accounts/form_cliente.html')
 
 def buscar_desarrollador(request):
@@ -213,7 +213,7 @@ def form_con_api (request):
         informacion = mi_formulario.cleaned_data
         desarrollador = Desarrollador(name=informacion['desarrollador'], proyecto=informacion['proyecto'], email=informacion['email'])
         desarrollador.save()
-        return  render(request,'accounts/base.html')
+        return  render(request,'accounts/home.html')
     else:  
         mi_formulario = InfDesarrollador()
         print (f"\n\n{mi_formulario}\n\n")

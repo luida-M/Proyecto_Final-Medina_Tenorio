@@ -8,7 +8,7 @@ class Cliente(models.Model):
     mensaje = models.TextField(default='') 
    
     def __str__(self):
-        return f"{self.name}, ({self.company})"
+        return f"{self.nombre}, ({self.empresa})"
 
 class Desarrollador(models.Model):
     nombre = models.CharField(max_length=100)
@@ -17,7 +17,7 @@ class Desarrollador(models.Model):
     proyecto = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.name}, ({self.rol})"
+        return f"{self.nombre}, ({self.rol})"
 
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=100)
@@ -30,7 +30,7 @@ class Proyecto(models.Model):
         ('completado', 'Completado')
     ])
     cliente = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='proyectos/')
+    #image = models.ImageField(upload_to='proyectos/')
 
     def __str__(self):
         return f"{self.nombre}, ({self.cliente}), ({self.estado})"  
@@ -45,4 +45,14 @@ class FormCliente(models.Model):
     def __str__(self):
         return self.nombre
       
+#class Pag_Proyecto(models.Model):
+#    titulo = models.CharField(max_length=200)
+ #   descripcion_corta = models.TextField()
+#    descripcion_detallada = models.TextField()
+#    imagen = models.CharField(max_length=200) 
+#    #imagen = models.ImageField(upload_to='portfolio/')
+#    cliente = models.CharField(max_length=100, null=True, blank=True)
+#    categoria = models.CharField(max_length=100, null=True, blank=True)
+#    def __str__(self):
+#        return self.titulo
 

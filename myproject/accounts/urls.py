@@ -2,16 +2,16 @@ from django.urls import path
 from accounts import views  # Si tienes vistas en accounts/views.py
 
 urlpatterns = [
-    path('', views.base, name='base'),
+    path('', views.home, name='home'),
     path('index/', views.index, name='index'),
     path('team/', views.team, name='team'),
     path('portfolio/', views.portfolio, name='portfolio'),
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-    path('pages/<int:pageId>/', views.detail_page, name='detail_page'),
-
+    #path('portfolio/', PortfolioView.as_view(), name='portfolio'),
 ]
+
 
 # Desarrollador
 urlpatterns += [

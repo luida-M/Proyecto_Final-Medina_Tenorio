@@ -1,0 +1,72 @@
+{% extends "accounts/home.html" %}
+{% load static %}
+{% block title %} Template de los Proyectos - hecho con herencia base {% endblock title %}
+{% block main %}
+<!-- Portfolio Grid-->
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Proyectos</h2>
+            <h3 class="section-subheading text-muted">Aquí encontrarás algunos de los proyectos más relevantes que hemos desarrollado para nuestros clientes.</h3>
+        </div>
+        <div class="row">
+            {% for page in pages %}
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="{% static 'accounts/assets/img/portfolio/'|add:page.image %}" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">{{ page.title }}</div>
+                        <div class="portfolio-caption-subheading text-muted">{{ page.description }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Modals-->
+{% for page in pages %}
+<div class="portfolio-modal modal fade" id="portfolioModal{{ page.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal">
+                <img src="{% static 'accounts/assets/img/close-icon.svg' %}" alt="Close modal" />
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here-->
+                            <h2 class="text-uppercase">{{ page.title }}</h2>
+                            <p class="item-intro text-muted">{{ page.description }}</p>
+                            <img class="img-fluid d-block mx-auto" src="{% static 'accounts/assets/img/portfolio/'|add:page.image %}" alt="..." />
+                            <p>{{ page.content }}</p>
+                            <ul class="list-inline">
+                                <li>
+                                    <strong>Cliente:</strong>
+                                    {{ page.client }}
+                                </li>
+                                <li>
+                                    <strong>Categoria:</strong>
+                                    {{ page.category }}
+                                </li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                <i class="fas fa-xmark me-1"></i>
+                                Cerrar Proyecto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock main %}

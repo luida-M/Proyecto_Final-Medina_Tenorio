@@ -25,6 +25,7 @@ class ProyectoAdmin(admin.ModelAdmin):
 
 #Ir a cada archivo admin.py de cada aplicación y agregamos cada modelo:
 # registra los modelos en el panel de administración, pero sin una configuración personalizada de ModelAdmin
+#admin.site.register(Pag_Proyecto)
 #admin.site.register(Desarrollador)
 #admin.site.register(Cliente)
 #admin.site.register(Proyecto)
