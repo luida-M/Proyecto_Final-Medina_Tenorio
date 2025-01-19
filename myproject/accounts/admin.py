@@ -4,24 +4,24 @@ from .models import Cliente, Desarrollador, Proyecto
 # Register your models here.
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'empresa') 
-    ordering = ('id', 'nombre', 'empresa')  
-    search_fields = ('nombre', 'empresa')  
-    list_filter = ('empresa',)    
+    list_display = ('id', 'nombre', 'email', 'empresa') 
+    ordering = ['id', 'empresa'] # Cambiado a lista 
+    search_fields = ('nombre', 'empresa') 
+    list_filter = ['empresa'] # Cambiado a lista
 
 @admin.register(Desarrollador)
 class DesarrolladorAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre', 'rol') 
-    ordering = ('id', 'nombre', 'rol')
+    ordering = ['rol', 'nombre'] # Cambiado a lista 
     search_fields = ('nombre', 'rol') 
-    list_filter = ('rol',)  
+    list_filter = ['rol'] # Cambiado a lista
 
 @admin.register(Proyecto)
 class ProyectoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'cliente', 'estado') 
-    ordering = ('id', 'nombre')
-    search_fields = ('nombre', 'cliente') 
-    list_filter = ('estado',)      
+    list_display = ('nombre_proyecto', 'cliente', 'estado') 
+    ordering = ['id', 'nombre_proyecto'] # Cambiado a lista 
+    search_fields = ('nombre_proyecto', 'cliente') 
+    list_filter = ['estado'] # Cambiado a lista    
 
 #Ir a cada archivo admin.py de cada aplicación y agregamos cada modelo:
 # registra los modelos en el panel de administración, pero sin una configuración personalizada de ModelAdmin

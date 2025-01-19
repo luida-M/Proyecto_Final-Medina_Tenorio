@@ -32,12 +32,12 @@ def register(request):
         if form.is_valid():
             form.save()
             msg_register = "Registro exitoso."
-            return render(request, "accounts/register.html", {"msg_register": msg_register})
-        #else:
+            return render(request, "accounts/home.html", {"msg_register": msg_register})
+        
         msg_register = "Error en los datos ingresados. Por favor, corrige los errores a continuación."
-    #else:
+    
     form = UserRegisterForm()
-    #    msg_register = ""
+    
     return render(request, "users/registro.html", {"form": form, "msg_register": msg_register})        
 
 # Vista de editar el perfil

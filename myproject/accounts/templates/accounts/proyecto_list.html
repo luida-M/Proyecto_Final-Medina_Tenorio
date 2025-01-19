@@ -1,24 +1,22 @@
 {% extends 'accounts/home.html' %}
-
 {% load static %}
-
-{% block title %} Listar Proyecto {% endblock title %}
-
+{% block title %}Proyecto  List {% endblock title %}
 {% block main %}
 
-
-<div class="row">
+<div class="row"> "C:\Users\decim\OneDrive\Desktop\Repositorio Git\myproject\media"
     {% for proyecto in object_list %}
         <div class="card" style="width: 18rem;" >
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{% static 'accounts/assets/img/avatar.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body">
-            <h5 class="card-title">{{ proyecto.nombre }}</h5>
-            <p class="card-text">rol: {{ proyecto.company }}</p>
+            <h5 class="card-title">Nombre del proyecto: {{ proyecto.nombre_proyecto }}</h5>
+            <p class="card-text">cliente: {{ proyecto.cliente }}</p>
             <a href="{% url 'ProyectoDetail' proyecto.id %}" class="btn btn-primary">Ver</a>
             <a href="{% url 'ProyectoUpdate' proyecto.id %}" class="btn btn-primary">Editar</a>
             <a href="{% url 'ProyectoDelete' proyecto.id %}" class="btn btn-primary">Borrar</a>
             </div>
         </div>
+    {% empty %} 
+        <p>No hay proyectos disponibles.</p> 
     {% endfor %}
 </div>
 

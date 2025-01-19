@@ -4,8 +4,8 @@
 {% block main %}
    <form action ="{% url 'form_cliente'%}" method="POST">
       {% csrf_token %}
-      <P>Nombre: <input type="text" name="name"></P>
-      <P>Empresa: <input type="text" name="company"></P>
+      <P>Nombre: <input type="text" name="nombre"></P>
+      <P>Empresa: <input type="text" name="empresa"></P>
       <P>Email: <input type="text" name="email"></P>
       <P>Telefono: <input type="text" name="telefono"></P>
       <P>Mensaje: <textarea name="mensaje"></textarea></P>

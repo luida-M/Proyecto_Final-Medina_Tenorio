@@ -12,8 +12,8 @@
         <div class="card" style="width: 18rem;" >
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-            <h5 class="card-title">{{ desarrollador.nombre }}</h5>
-            <p class="card-text">rol: {{ desarrollador.rol }}</p>
+            <h5 class="card-title">Nombre: {{ desarrollador.nombre }}</h5>
+            <p class="card-text">Rol: {{ desarrollador.rol }}</p>
             <a href="{% url 'DesarrolladorDetail' desarrollador.id %}" class="btn btn-primary">Ver</a>
             <a href="{% url 'DesarrolladorUpdate' desarrollador.id %}" class="btn btn-primary">Editar</a>
             <a href="{% url 'DesarrolladorDelete' desarrollador.id %}" class="btn btn-primary">Borrar</a>

@@ -2,11 +2,11 @@
 
 {% load static %}
 
-{% block title %} Details Proyecto {% endblock title %}
+{% block title %} Proyecto Details {% endblock title %}
 
 {% block main %}
     
-NOMBRE: {{ proyecto.nombre }}<br>
+NOMBRE: {{ proyecto.nombre_proyecto }}<br>
 <button type="button" class="btn btn-dark"><a href="{% url 'ProyectoList' %}">Regresar</a></button>
 
 

@@ -25,7 +25,9 @@ class FormClienteForm(forms.ModelForm):
         fields = ['nombre', 'email']
 
 
-
+#class ProyectoForm(forms.ModelForm): 
+#    class Meta: 
+#        model = Proyecto fields = ['nombre_proyecto', 'empresa']
 
 
 

@@ -1,17 +1,15 @@
 {% extends 'accounts/home.html' %}
-
 {% load static %}
-
-{% block title %} Update Proyecto {% endblock title %}
-
+{% block title %} Editar Proyecto {% endblock title %}
 {% block main %}
-    
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Actualizar">
-</form>
-
-
-{% endblock main %}
+    <div class="container">
+        <h2>Editar Proyecto</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+        <a href="{% url 'ProyectoList' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+{% endblock %}

@@ -25,18 +25,6 @@ def home(request):
 def index(request): 
     return render(request, 'accounts/index.html')
 
-# vista basada en funciones que requiere login para mostrar el uso de @login_requiredo
-
-#class PortfolioView(ListView):
-#    model = Proyecto
-#    template_name = 'portfolio.html'
-#    context_object_name = 'proyectos'  # Este nombre se usará en la plantilla
-#    ordering = ['id']  # Ordenar por ID
-
-#def project_detail(request, proyecto_id):
-#    proyecto = get_object_or_404(Proyecto, id=proyecto_id)
-#    return render(request, 'project_detail.html', {'proyecto': proyecto})
-
 def login_request(request):
     msg_login=""
     if request.method == 'POST':
@@ -59,125 +47,126 @@ def about(request):
     return render(request, 'users/about.html') 
 
 # vista basada en clases - Desarrollador
-class DesarrolladorListView(LoginRequiredMixin, ListView):
+class DesarrolladorListView(ListView):
     model = Desarrollador
     template_name="accounts/proyecto_list.html"
 
-    def get(self, request, *args, **kwargs):
-        return super().get(request,*args, **kwargs)
+    def get_queryset(self):
+        return Curso.objects.filter(id__lte=10)
 
-class DesarrolladorDetailView(LoginRequiredMixin, DetailView):
+class DesarrolladorDetailView(DetailView):
     model = Desarrollador
     template_name = "accounts/desarrollador_detail.html"
-    #Otra forma de redireccionar el login, tiene prioridad sobre el settings
     login_url = '/users/login/'
 
     def get_login_url(self):
         return self.login_url
 
-class DesarrolladorCreateView(LoginRequiredMixin, CreateView):
-    """
-    Esta clase envía por defecto un formulario al archivo html. Envía los campos indicados en la lista "fields" y podemos hacer uso de dicho formulario bajo la key "form".
-    """
+class DesarrolladorCreateView(CreateView):
     model = Desarrollador
     template_name = "accounts/desarrollador_create.html"
     fields = ["nombre", "rol"]
-    # En success_url indicamos la vista que queremos visitar una vez que se genera un curso con éxito. Lo podemos hacer de 2 formas:
-    # Indicando la URL
-    # success_url = "/desarrollador-list/"
-    # Con el reverse_lazy indicamos el nombre de la vista
     success_url = reverse_lazy("DesarrolladorList")    
 
-class DesarrolladorUpdateView(LoginRequiredMixin, UpdateView):
+class DesarrolladorUpdateView(UpdateView):
     model = Desarrollador
     success_url = reverse_lazy("DesarrolladorList")
     fields = ["nombre", "rol"]
     template_name = "accounts/desarrollador_update.html"
 
 
-class DesarrolladorDeleteView(LoginRequiredMixin, DeleteView):
+class DesarrolladorDeleteView(DeleteView):
     model = Desarrollador
     success_url = reverse_lazy("DesarrolladorList")
     template_name = 'accounts/desarrollador_confirm_delete.html'
 
+    def post(self, request, *args, **kwargs):
+        print(f"\n\nESTE METODO SE EJECUTA\n\n")
+        if request.user.is_superuser:
+            super().post(request, *args, **kwargs)
+        return render(request, "accounts/home.html")
+
 # VISTAS BASADAS EN CLASES - Clientes
-class ClienteListView(LoginRequiredMixin, ListView):
+class ClienteListView(ListView):
     model = Cliente
     template_name = "accounts/proyecto_list.html"
+    context_object_name = 'clientes'
 
+    def get_queryset(self, request, *args, **kwargs):
+        return super().get(request,*args, **kwargs)
 
-class ClienteDetailView(LoginRequiredMixin, DetailView):
+class ClienteDetailView(DetailView):
     model = Cliente
     template_name = "accounts/cliente_detail.html"
+    model = Proyecto
+    login_url = '/users/login/'
+
+    def get_login_url(self):
+        return self.login_url
 
 
-class ClienteCreateView(LoginRequiredMixin, CreateView):
-
+class ClienteCreateView(CreateView):
     model = Cliente
     template_name = "accounts/cliente_create.html"
     fields = ["nombre", "empresa", "email"]
     success_url = reverse_lazy("ClienteList")
 
-class ClienteUpdateView(LoginRequiredMixin, UpdateView):
+class ClienteUpdateView(UpdateView):
     model = Cliente
     success_url = reverse_lazy("ClienteList")
     fields = ["nombre", "apellido", "email"]
     template_name = "accounts/cliente_update.html"
 
 
-class ClienteDeleteView(LoginRequiredMixin, DeleteView):
+class ClienteDeleteView(DeleteView):
     model = Cliente
     success_url = reverse_lazy("ClienteList")
     template_name = 'accounts/cliente_confirm_delete.html'    
-    def pots(self, request, *args, **kwargs):
+
+    def post(self, request, *args, **kwargs):
         print(f"\n\n Este Método se ejecuta\n\n")
         if request.user.is_superuser:
             super().post(request, *args, **kwargs)
-        return render(request, accounts/base.html)     
+        return render(request, accounts/home.html)     
 
 # vista basada en clases: Proyecto
-class ProyectoListView(LoginRequiredMixin, ListView):
+class ProyectoListView(ListView):
     model = Proyecto
-    template_name="accounts/proyecto_list.html"
-    #context_object_name = 'proyectos'
-
-    def get(self, request, *args, **kwargs):
-        return super().get(request,*args, **kwargs)
-
-class ProyectoDetailView(LoginRequiredMixin, DetailView):
+    template_name='accounts/proyecto_list.html'
+   
+    def get_queryset(self):
+        return Proyecto.objects.filter(id__lte=10)
+            
+class ProyectoDetailView(DetailView):
     model = Proyecto
-    template_name = "accounts/proyecto_detail.html"
-    #Otra forma de redireccionar el login, tiene prioridad sobre el settings
+    template_name = 'accounts/proyecto_detail.html'
     login_url = '/users/login/'
 
     def get_login_url(self):
         return self.login_url
 
-class ProyectoCreateView(LoginRequiredMixin, CreateView):
-    """
-    Esta clase envía por defecto un formulario al archivo html. Envía los campos indicados en la lista "fields" y podemos hacer uso de dicho formulario bajo la key "form".
-    """
+class ProyectoCreateView(CreateView):
     model = Proyecto
-    template_name = "accounts/from_desarrollador.html"
-    fields = ["descripción", "nombre", "empresa", "estado"]
-    # En success_url indicamos la vista que queremos visitar una vez que se genera un curso con éxito. Lo podemos hacer de 2 formas:
-    # Indicando la URL
-    # success_url = "/Proyecto-list/"
-    # Con el reverse_lazy indicamos el nombre de la vista
+    template_name = "accounts/proyecto_create.html"
+    fields = ["nombre_proyecto", "descripcion", "cliente", "estado", "fecha_inicio", "fecha_fin"]
     success_url = reverse_lazy("ProyectoList")    
 
-class ProyectoUpdateView(LoginRequiredMixin, UpdateView):
+class ProyectoUpdateView(UpdateView):
     model = Proyecto
+    fields = ["nombre_proyecto", "descripcion", "cliente", "estado", "fecha_inicio", "fecha_fin"]
+    template_name = "accounts/proyecto_update.html"
     success_url = reverse_lazy("ProyectoList")
-    fields = ["descripción", "nombre", "empresa", "estado"]
-    template_name = "accounts/from_desarrollador.html"
 
-
-class ProyectoDeleteView(LoginRequiredMixin, DeleteView):
+class ProyectoDeleteView(DeleteView):
     model = Proyecto
+    template_name = "accounts/proyecto_confirm_delete.html"
     success_url = reverse_lazy("ProyectoList")
-    template_name = 'accounts/proyecto_confirm_delete.html'
-    success_url = reverse_lazy('ProyectoList')
+
+    def post(self, request, *args, **kwargs):   
+        print(f"\n\n Este Método se ejecuta\n\n")
+        if request.user.is_superuser:
+            super().post(request, *args, **kwargs)
+        return render(request, accounts/home.html)         
 
 
 def form_desarrollador(request):
@@ -240,7 +229,7 @@ def team(request):
 
 def portfolio(request): 
     return render(request, 'accounts/portfolio.html')
-    
+
 def services(request):
     return render(request, 'accounts/services.html')
 

@@ -9,7 +9,7 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-    #path('portfolio/', PortfolioView.as_view(), name='portfolio'),
+    
 ]
 
 
@@ -33,11 +33,11 @@ urlpatterns += [
 
 # Proyectos
 urlpatterns += [
-    path('proyectos-list/', views.ProyectoListView.as_view(), name="ProyectoList"),
-    path('proyectos-detail/<int:pk>/', views.ProyectoDetailView.as_view(), name="ProyectoDetail"),
-    path('proyectos-create/', views.ProyectoCreateView.as_view(), name="ProyectoCreate"),
-    path('proyectos-update/<int:pk>/', views.ProyectoUpdateView.as_view(), name="ProyectoUpdate"),
-    path('proyectos-delete/<int:pk>/', views.ProyectoDeleteView.as_view(), name="ProyectoDelete"),
+    path('proyecto-list/', views.ProyectoListView.as_view(), name="ProyectoList"),
+    path('proyecto-detail/<int:pk>/', views.ProyectoDetailView.as_view(), name="ProyectoDetail"),
+    path('proyecto-create/', views.ProyectoCreateView.as_view(), name="ProyectoCreate"),
+    path('proyecto-update/<int:pk>/', views.ProyectoUpdateView.as_view(), name="ProyectoUpdate"),
+    path('proyecto-delete/<int:pk>/', views.ProyectoDeleteView.as_view(), name="ProyectoDelete"),
 ]
 
 

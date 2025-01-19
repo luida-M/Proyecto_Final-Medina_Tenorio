@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Details desarrollador {% endblock title %}
+{% block title %} Detalle de Proyecto {% endblock title %}
 
 {% block main %}
     
@@ -11,3 +11,19 @@ NOMBRE: {{ desarrollador.nombre }}<br>
 
 
 {% endblock main %}
+{% extends 'accounts/home.html' %}
+
+{% block title %}Detalle de Desarrollador{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h2>{{ proyecto.nombre_proyecto }}</h2>
+        <p><strong>Cliente:</strong> {{ proyecto.cliente }}</p>
+        <p><strong>Estado:</strong> {{ proyecto.estado }}</p>
+        <p><strong>Fecha de Inicio:</strong> {{ proyecto.fecha_inicio }}</p>
+        <p><strong>Fecha de Fin:</strong> {{ proyecto.fecha_fin }}</p>
+        <a href="{% url 'ProyectoUpdate' proyecto.id %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'ProyectoDelete' proyecto.id %}" class="btn btn-danger">Borrar</a>
+        <a href="{% url 'ProyectoList' %}" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "accounts/home.html" %} 
+{% load static %}
+{% block title %}Proyecto Create {% endblock title %}
+
+{% block main %}
+   <form action ="{% url 'ProyectoCreate'%}" method="POST" >
+      {% csrf_token %}
+      <P>Nombre del proyecto: <input type="text" name="nombre_proyecto"></P>
+      <P>Descripción: <textarea name="descripcion"></textarea></p> 
+      <p>Cliente: <input type="text" name="cliente"></p> 
+      <p>Estado: <input type="text" name="estado"></p> 
+      <p>Fecha de Inicio: <input type="date" name="fecha_inicio"></p> 
+      <p>Fecha de Fin: <input type="date" name="fecha_fin"></p> 
+
+      <input type="submit"   value="Enviar">
+   </form>
+   
+{% endblock main %}
